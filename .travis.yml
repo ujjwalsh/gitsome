@@ -1,4 +1,7 @@
 language: python
+arch:
+  - amd64
+  - ppc64le
 matrix:
   include:
     - python: 3.5
@@ -8,6 +11,8 @@ matrix:
     - python: 3.7
       dist: xenial  # required for Python >= 3.7
       env: TOXENV=py37
+before_install:
+  - sudo chown -Rvf $USER:$GROUP ~/.cache/pip/wheels
 install:
   - travis_retry pip install codecov tox
 script:
